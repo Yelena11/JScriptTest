@@ -1,0 +1,236 @@
+﻿ .icon-logo {
+  background-image: url(sprites.png);
+  POSITION: absolute;
+  width:210px;
+  height:84px;
+  background-position: -415px 0px;
+  margin-top: 25px; margin-left: 100px;
+}
+
+.site-img {
+  background-image: url(main_img.jpg);
+  POSITION: absolute; top: 205px;
+  width: 950px;
+  height: 439px;
+  background-position: 0px 0px;
+  margin-left: 100px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 0 5px rgba(0, 0, 0, 0.1) inset;
+}
+#FeaturedServices {
+    position: absolute; 
+    top: 670px; 
+    left: 110px; 
+    background-color: #fff; 
+    width: 953px; height: 200px;
+}
+
+.b1 {
+  background-color: #222224;
+   background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(34,34,36)), color-stop(0.55, rgb(67,70,71)), color-stop(0.78,  rgb(53,53,55) ) );
+   background: -moz-linear-gradient( center bottom, rgb(34,34,36) 9%, rgb(67,70,71) 55%,  rgb(53,53,55)  78% );
+   background: -o-linear-gradient( center bottom, rgb(34,34,36) 9%, rgb(67,70,71) 55%, rgb(53,53,55) 78% );
+   border: 1px solid #121314;
+   border-top: 1px solid #2b2e30;
+   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 0 5px rgba(0, 0, 0, 0.1) inset;
+
+  height: 200px;
+  width: 171px;
+  display: inline-block;
+  float: left;
+  cursor: pointer; 
+}
+
+.b2 {
+  background-color: #fff;
+  height: 200px;
+  width: 20px;
+  display: inline-block;
+  float: left;
+}
+.bottom {
+  margin-top: 20px;
+  margin-left: 30px;
+  width:84px;
+  height:84px;
+  background-image: url(sprites.png);
+}
+
+.top {
+  margin-top: 20px;
+  margin-left: 30px;
+  width:83px;
+  height:84px;
+  background-image: url(sprites.png);
+}
+
+.b1 span {
+  position:absolute;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.b1 span.top:hover {
+  visibility:visible;
+  opacity:0;
+
+}
+
+.b_text {
+    position: absolute;
+    PADDING-BOTTOM: 0px;
+    margin-left: 25px;
+    margin-top: 120px;
+    PADDING-LEFT: 0px;
+    PADDING-RIGHT: 0px;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 0px;
+    width: 100px;
+}
+#nav {
+    background-color: #222224; 
+	height: 50px; 
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+	margin: 0px; 
+    padding: 0px 0px 0px 0px;
+	width: 947px; 
+    position: absolute; top: 140px; left: 110px;
+
+     border: 1px solid #121314;
+     border-top: 1px solid #2b2e30;
+     background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(59,63,65)), color-stop(0.55, rgb(72,76,77)), color-stop(0.78, rgb(75,77,77)) );
+     background: -moz-linear-gradient( center bottom, rgb(59,63,65) 9%, rgb(72,76,77) 55%, rgb(75,77,77) 78% );
+     background: -o-linear-gradient( center bottom, rgb(59,63,65) 9%, rgb(72,76,77) 55%, rgb(75,77,77) 78% );
+     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 0 5px rgba(0, 0, 0, 0.1) inset;
+}
+
+#nav ul {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+}
+
+#nav ul li {
+ position: relative;
+ float: left;
+ width: 135px; 
+ height: 50px; 
+}
+
+#nav ul li a {
+ float: left;
+ color: #ffffff;
+ padding: 10px 0px;
+ text-decoration: none;
+ background: #222224;
+ width: 135px;
+ height: 30px;
+ 
+ background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(34,34,36)), color-stop(0.55, rgb(67,70,71)), color-stop(0.78,  rgb(53,53,55) ) );
+ background: -moz-linear-gradient( center bottom, rgb(34,34,36) 9%, rgb(67,70,71) 55%,  rgb(53,53,55)  78% );
+ background: -o-linear-gradient( center bottom, rgb(34,34,36) 9%, rgb(67,70,71) 55%, rgb(53,53,55) 78% );
+    
+ border-left: 1px solid rgba(255, 255, 255, 0.05);
+ border-right: 1px solid rgba(0,0,0,0.2);
+ text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.6);
+}
+/* Drop Down Menu By helperblogger.com */
+#nav ul li a:hover,
+#nav ul li:hover > a {
+ color: #252525;
+ background: #E5E4E2;
+ height: 30px;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 -1px #000;
+ 
+ background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(229,228,226)), color-stop(0.55, rgb(227,226,225)), color-stop(0.78, rgb(166,163,159)) );
+ background: -moz-linear-gradient( center bottom, rgb(229,228,226) 9%, rgb(227,226,225) 55%,rgb(166,163,159) 78% );
+ background: -o-linear-gradient( center bottom, rgb(229,228,226) 9%, rgb(227,226,225) 55%, rgb(166,163,159) 78% );
+
+}
+
+#nav li ul a:hover,
+#nav ul li li:hover > a {
+ color: #252525;
+ background: #E5E4E2;
+ height: 30px;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2), 0 -1px #000;
+ 
+ background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(229,228,226)), color-stop(0.55, rgb(227,226,225)), color-stop(0.78, rgb(166,163,159)) );
+ background: -moz-linear-gradient( center bottom, rgb(229,228,226) 9%, rgb(227,226,225) 55%,rgb(166,163,159) 78% );
+ background: -o-linear-gradient( center bottom, rgb(229,228,226) 9%, rgb(227,226,225) 55%, rgb(166,163,159) 78% );
+}
+/* Drop Down Menu By helperblogger.com */
+#nav li ul {
+ background: #3C4042;
+ background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, rgb(77,79,79)), color-stop(0.55, rgb(67,70,71)), color-stop(0.78, rgb(69,70,71)) );
+ background-image: -moz-linear-gradient( center bottom, rgb(77,79,79) 9%, rgb(67,70,71) 55%, rgb(69,70,71) 78% );
+ background-image: -o-linear-gradient( center bottom, rgb(77,79,79) 9%, rgb(67,70,71) 55%, rgb(69,70,71) 78% );
+ left: -999em;
+ margin: 50px 0 0;
+ position: absolute;
+ width: 150px;
+ z-index: 9999;
+ box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset;
+ -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset;
+ -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.4) inset;
+ border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#nav li:hover ul {
+ left: 0;
+
+}
+
+#nav li ul a {
+ background: none;
+ border: 0 none;
+ margin-right: 0;
+ width: 150px;
+ box-shadow: none;
+ -moz-box-shadow: none;
+ -webkit-box-shadow: none;
+ border-bottom: 1px solid transparent;
+ border-top: 1px solid transparent;
+}
+
+.nav ul li ul {
+    position: absolute;
+    left: 0;
+    display: none;
+    visibility: hidden;
+
+}
+
+.nav ul li ul li {
+    display: list-item;
+    float: none;
+}
+
+.nav ul li ul li ul {
+    top: 0;
+}
+
+.nav ul li ul li a {
+    font: normal 13px Verdana;
+    width: 150px;
+    padding: 5px;
+    margin: 0;
+    border-top-width: 0;
+    border-bottom: 1px solid gray;
+}
+
+#nav li li ul {
+ margin: -1px 0 0 150px;
+ visibility: hidden;
+}
+
+#nav li li:hover ul {
+ visibility: visible;
+}

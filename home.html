@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Home Page</title>
+    <link href="Content/common.css" rel="stylesheet" />
+</head>
+<body>
+<div style="height: 900px; width: 1200px; background-color: #fff; border-top: solid 5px #222224; border-bottom: solid 50px #222224; ">
+    <span class="icon-logo"></span>
+    <div id="nav"></div>
+    <span class="site-img"></span>
+    <div id="FeaturedServices"></div>
+</div>
+
+    <script type="text/javascript">
+        //create XMLHttpReques async request
+        var xmlHttp = createXMLHttpRequestObject();
+        processXMLHttpRequest(xmlHttp);
+
+        // creates an XMLHttpRequest instance
+        function createXMLHttpRequestObject() {
+            //debugger;
+            // xmlHttp will store the reference to the XMLHttpRequest object
+            var xmlHttp;
+            // try to instantiate the native XMLHttpRequest object
+            try {
+                // create an XMLHttpRequest object
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                // assume IE6 or older
+                try {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHttp");
+                }
+                catch (e) { }
+            }
+            // return the created object or display an error message
+            if (!xmlHttp)
+                console.log("Error creating the XMLHttpRequest object.");
+            else
+                return xmlHttp;
+        }
+        // performs a server request and assigns a callback function
+        function processXMLHttpRequest(xmlHttp) {
+            // continue only if xmlHttp isn't void
+            //debugger;
+            if (xmlHttp) {
+                // try to connect to the server
+                try {
+                    // initiate server request
+                    xmlHttp.onreadystatechange = function () {
+                        // continue if the process is completed
+                        if (xmlHttp.readyState == 4) {
+                            // continue only if HTTP status is "OK"
+                            if (xmlHttp.status == 200 || window.location.href.indexOf("http") == -1) {
+                                try {
+                                   // retrieve the response
+                                    response = xmlHttp.responseText;
+                                    var arrNodes = [];
+                                    var jsondata = JSON.parse(response);
+                                    //iterate through json and store values in arrNode
+                                    iterateJSON(jsondata, 0, arrNodes);
+                                    //render json nodes to controls
+                                    document.getElementById("FeaturedServices").innerHTML = renderFuturedServices(arrNodes);
+                                    document.getElementById("nav").innerHTML = renderNavMenu(arrNodes);
+                                }
+                                catch (e) {
+                                    // display error message
+                                    console.log("Error reading the response: " + e.toString());
+                                }
+                            }
+                            else {
+                                // display status message
+                                console.log("There was a problem retrieving the data:\n" + xmlHttp.statusText);
+                            }
+                        }
+                    }
+                    xmlHttp.open('GET', 'data.json', true);
+                    xmlHttp.overrideMimeType("text/plain");
+
+                    xmlHttp.send(null);
+                }
+                // display an error in case of failure
+                catch (e) {
+                    console.log("Can't connect to server:\n" + e.toString());
+                }
+            }
+        }
+
+
+
+        //object to store json node information
+        var jsonNode = function (nodeLabel, nodeTitle, nodeLink, nodeUrl) {
+            // Produce an object that represents jsonNode
+            this.topLabel = nodeLabel;
+            this.title = nodeTitle;
+            this.url = nodeUrl;
+            this.arrLinks = [];
+
+            //inser menu link into array
+            this.insertLink = function (val) { this.arrLinks.push(val); };
+            //render futured services div
+            this.getFuturedServicesHTML = function (topStyle, bottomStyle) {
+                var result = '';
+                result += "<div class=b1 ><span class=bottom style='" + bottomStyle + "'></span><span class=top style='" + topStyle + "'></span>";
+                result += "<span class=b_text>" + this.title + "</span></div>";
+
+                return result;
+            };
+            this.getEmptyDivHTML = function () {
+                var result = '';
+                result += "<div class=b2 ></div>";
+                return result;
+            };
+
+            //render navigation menu
+            this.getNavMenuHTML = function () {
+                var result = '';
+
+                result += "<li><a href='#'>" + this.topLabel.toUpperCase() + "</a><ul>";
+                for (var i = 0; i < this.arrLinks.length; i++) {
+                    if (this.arrLinks[i] != "")
+                        result += "<li><a href='#'>" + this.arrLinks[i].toUpperCase() + "</a></li>";
+                }
+                result += "</ul></li>";
+                return result;
+            }
+        };
+
+        //recursive functions to scan json nodes and store data
+        function iterateJSON(o, iterCounter, arrNodeObjects) {
+            //debugger;
+            var nodeElement;
+            //nodes iteration counter
+            iterCounter++;
+
+            //loop through every object in current node o
+            for (var a in o) {
+                //check if top node none object element is presented, create nodeElement 
+                //and insert into arrNodeObjects 
+                if (o.hasOwnProperty(a) && typeof o[a] != 'object' && (Object.prototype.toString.call(o) !== '[object Array]') && iterCounter < 3 ){
+                    nodeElement = new jsonNode();
+                    nodeElement.topLabel = a;
+                    arrNodeObjects.push(nodeElement);
+                }
+                //check if current node is an object, create nodeElement 
+                //and insert into arrNodeObjects 
+                if (typeof o[a] == 'object') {
+                    
+                    if (iterCounter > 1) {
+                        nodeElement = new jsonNode();
+                        nodeElement.topLabel = a;
+                        arrNodeObjects.push(nodeElement);
+                    }
+                    iterateJSON(o[a], iterCounter, arrNodeObjects);
+                }
+                else {
+                    //check node properties and update object instance
+                    switch(a){
+                        case "title":
+                            arrNodeObjects[arrNodeObjects.length - 1].title = o[a];
+                            break;
+                        case "url":
+                            arrNodeObjects[arrNodeObjects.length - 1].url = o[a];
+                            break;
+                        default:
+                            arrNodeObjects[arrNodeObjects.length - 1].insertLink(o[a]);
+                    }
+                }//end if
+            }//end for
+            return;
+        }//end function
+
+        
+        function renderFuturedServices(arrNodes){
+            var s = '';
+            var styleCounter = 0;
+            var topPictureStyle = ["background-position: 0px -1px; width: 84px;", "background-position: -167px 0px; width: 82px;", "background-position: -329px -1px;  width: 82px;", "background-position: -248px -1px;  width: 82px;", "background-position: -83px 0px; width: 84px;"];
+            var bottomPictureStyle = ['background-position: 0px -84px; width: 84px;', "background-position: -170px -84px; width: 82px;", "background-position: -333px -84px;  width: 82px;", "background-position: -252px -84px;  width: 82px;", "background-position: -85px -84px; width: 84px;"];
+         
+            for (var i = 0; i < arrNodes.length; i++) {
+                if (arrNodes[i].url != undefined && arrNodes[i].url != "") {
+                    s += arrNodes[i].getFuturedServicesHTML(topPictureStyle[styleCounter], bottomPictureStyle[styleCounter]);
+                    if (styleCounter < topPictureStyle.length - 1)
+                        s += arrNodes[i].getEmptyDivHTML();
+                    styleCounter++;
+                }
+            }
+            return s;
+        }
+
+        function renderNavMenu(arrNodes) {
+            var s = '<ul>';
+            for (var i = 0; i < arrNodes.length; i++) {
+                if ((arrNodes[i].url == undefined || arrNodes[i].url == "") &&  arrNodes[i].arrLinks.length > 0) {
+                    s += arrNodes[i].getNavMenuHTML();                   
+                }
+            }
+            s += "</ul>"
+            return s;
+        }
+
+</script>
+
+
+</body>
+</html>
